@@ -1,0 +1,39 @@
+{
+  "name": "perltest-cms",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Strapi application",
+  "scripts": {
+    "build": "strapi build",
+    "console": "strapi console",
+    "deploy": "strapi deploy",
+    "dev": "strapi develop",
+    "develop": "strapi develop",
+    "seed:example": "node ./scripts/seed.js",
+    "start": "strapi start",
+    "strapi": "strapi",
+    "upgrade": "npx @strapi/upgrade latest",
+    "upgrade:dry": "npx @strapi/upgrade latest --dry"
+  },
+  "dependencies": {
+    "@strapi/plugin-cloud": "5.23.3",
+    "@strapi/plugin-users-permissions": "^5.31.2",
+    "@strapi/provider-upload-cloudinary": "^5.31.2",
+    "@strapi/strapi": "^5.31.2",
+    "fs-extra": "^10.0.0",
+    "mime-types": "^2.1.27",
+    "pg": "^8.16.3",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0",
+    "styled-components": "^6.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=22.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "47a54a90-d00d-4226-bd4a-f6f40e33ecbe",
+    "installId": "0e9ad9d36a04c376a4f25791282a49b8f4e87dc42f054368d228a649812660de"
+  }
+}
