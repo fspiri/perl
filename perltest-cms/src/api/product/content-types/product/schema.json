@@ -32,6 +32,11 @@
     },
     "isAvailable": {
       "type": "boolean"
+    },
+    "Handle": {
+      "type": "string",
+      "required": true,
+      "unique": true
     }
   }
 }
