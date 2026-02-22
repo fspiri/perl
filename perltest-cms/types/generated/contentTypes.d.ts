@@ -1167,6 +1167,22 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    league_playstyle: Schema.Attribute.Enumeration<
+      [
+        'Casual',
+        'Tryhard',
+        'Pro',
+        'Streamer',
+        'Coach',
+        'SoloQ Demon',
+        'DuoQ Enjoyer',
+        'his e-girl',
+        'her e-boy',
+      ]
+    >;
+    league_role: Schema.Attribute.Enumeration<
+      ['Top', 'Jungle', 'Mid', 'Bot', 'Support']
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

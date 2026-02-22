@@ -74,6 +74,30 @@
     },
     "riot_tagLine": {
       "type": "string"
+    },
+    "league_role": {
+      "type": "enumeration",
+      "enum": [
+        "Top",
+        "Jungle",
+        "Mid",
+        "Bot",
+        "Support"
+      ]
+    },
+    "league_playstyle": {
+      "type": "enumeration",
+      "enum": [
+        "Casual",
+        "Tryhard",
+        "Pro",
+        "Streamer",
+        "Coach",
+        "SoloQ Demon",
+        "DuoQ Enjoyer",
+        "his e-girl",
+        "her e-boy"
+      ]
     }
   }
 }
