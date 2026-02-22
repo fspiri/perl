@@ -98,6 +98,15 @@
         "his e-girl",
         "her e-boy"
       ]
+    },
+    "champ_1": {
+      "type": "string"
+    },
+    "champ_2": {
+      "type": "string"
+    },
+    "champ_3": {
+      "type": "string"
     }
   }
 }
