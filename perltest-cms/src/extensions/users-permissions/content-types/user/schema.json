@@ -107,6 +107,9 @@
     },
     "champ_3": {
       "type": "string"
+    },
+    "riot_linked_at": {
+      "type": "datetime"
     }
   }
 }

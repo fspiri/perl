@@ -1201,6 +1201,7 @@ export interface PluginUsersPermissionsUser
     publishedAt: Schema.Attribute.DateTime;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
     riot_gameName: Schema.Attribute.String;
+    riot_linked_at: Schema.Attribute.DateTime;
     riot_puuid: Schema.Attribute.String;
     riot_tagLine: Schema.Attribute.String;
     role: Schema.Attribute.Relation<
