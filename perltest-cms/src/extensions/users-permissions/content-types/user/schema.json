@@ -128,6 +128,12 @@
         "silver",
         "gold"
       ]
+    },
+    "profile_setting": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::profile-setting.profile-setting",
+      "inversedBy": "users_permissions_user"
     }
   }
 }

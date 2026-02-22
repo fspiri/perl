@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "profile_settings",
+  "info": {
+    "singularName": "profile-setting",
+    "pluralName": "profile-settings",
+    "displayName": "Profile-Settings"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "bio": {
+      "type": "text"
+    },
+    "location": {
+      "type": "string"
+    },
+    "customize": {
+      "type": "json"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "profile_setting"
+    }
+  }
+}
