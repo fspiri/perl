@@ -1156,6 +1156,9 @@ export interface PluginUsersPermissionsUser
     draftAndPublish: false;
   };
   attributes: {
+    authority: Schema.Attribute.Enumeration<
+      ['user', 'vip', 'moderator', 'admin', 'founder']
+    >;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     champ_1: Schema.Attribute.String;
     champ_2: Schema.Attribute.String;
@@ -1208,6 +1211,7 @@ export interface PluginUsersPermissionsUser
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    subscription_tier: Schema.Attribute.Enumeration<['free', 'silver', 'gold']>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

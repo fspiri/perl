@@ -110,6 +110,24 @@
     },
     "riot_linked_at": {
       "type": "datetime"
+    },
+    "authority": {
+      "type": "enumeration",
+      "enum": [
+        "user",
+        "vip",
+        "moderator",
+        "admin",
+        "founder"
+      ]
+    },
+    "subscription_tier": {
+      "type": "enumeration",
+      "enum": [
+        "free",
+        "silver",
+        "gold"
+      ]
     }
   }
 }
