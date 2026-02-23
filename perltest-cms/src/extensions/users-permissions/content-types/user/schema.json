@@ -134,6 +134,16 @@
       "relation": "oneToOne",
       "target": "api::profile-setting.profile-setting",
       "inversedBy": "user"
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

@@ -1194,6 +1194,7 @@ export interface PluginUsersPermissionsUser
     authority: Schema.Attribute.Enumeration<
       ['user', 'vip', 'moderator', 'admin', 'founder']
     >;
+    avatar: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     champ_1: Schema.Attribute.String;
     champ_2: Schema.Attribute.String;
