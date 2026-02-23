@@ -600,6 +600,39 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCommentComment extends Struct.CollectionTypeSchema {
+  collectionName: 'comments';
+  info: {
+    displayName: 'Comment';
+    pluralName: 'comments';
+    singularName: 'comment';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::comment.comment'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    thread: Schema.Attribute.Relation<'manyToOne', 'api::thread.thread'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
@@ -713,8 +746,12 @@ export interface ApiThreadThread extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    Author: Schema.Attribute.String;
+    author: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
     Category: Schema.Attribute.String;
+    comments: Schema.Attribute.Relation<'oneToMany', 'api::comment.comment'>;
     Content: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1199,6 +1236,7 @@ export interface PluginUsersPermissionsUser
     champ_1: Schema.Attribute.String;
     champ_2: Schema.Attribute.String;
     champ_3: Schema.Attribute.String;
+    comments: Schema.Attribute.Relation<'oneToMany', 'api::comment.comment'>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     createdAt: Schema.Attribute.DateTime;
@@ -1252,6 +1290,7 @@ export interface PluginUsersPermissionsUser
       'plugin::users-permissions.role'
     >;
     subscription_tier: Schema.Attribute.Enumeration<['free', 'silver', 'gold']>;
+    threads: Schema.Attribute.Relation<'oneToMany', 'api::thread.thread'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1280,6 +1319,7 @@ declare module '@strapi/strapi' {
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
+      'api::comment.comment': ApiCommentComment;
       'api::global.global': ApiGlobalGlobal;
       'api::product.product': ApiProductProduct;
       'api::profile-setting.profile-setting': ApiProfileSettingProfileSetting;

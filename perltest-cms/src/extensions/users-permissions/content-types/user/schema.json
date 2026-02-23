@@ -144,6 +144,18 @@
         "videos",
         "audios"
       ]
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "user"
+    },
+    "threads": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::thread.thread",
+      "mappedBy": "author"
     }
   }
 }

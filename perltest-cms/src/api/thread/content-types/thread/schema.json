@@ -24,8 +24,17 @@
     "Category": {
       "type": "string"
     },
-    "Author": {
-      "type": "string"
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "thread"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "threads"
     }
   }
 }
