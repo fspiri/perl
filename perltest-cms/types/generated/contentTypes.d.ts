@@ -528,6 +528,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    replies: Schema.Attribute.Relation<'manyToOne', 'api::comment.comment'>;
     slug: Schema.Attribute.UID<'title'>;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
@@ -621,6 +622,7 @@ export interface ApiCommentComment extends Struct.CollectionTypeSchema {
       'api::comment.comment'
     > &
       Schema.Attribute.Private;
+    parent: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
     publishedAt: Schema.Attribute.DateTime;
     thread: Schema.Attribute.Relation<'manyToOne', 'api::thread.thread'>;
     updatedAt: Schema.Attribute.DateTime;

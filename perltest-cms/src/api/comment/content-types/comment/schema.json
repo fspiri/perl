@@ -25,6 +25,12 @@
       "relation": "manyToOne",
       "target": "api::thread.thread",
       "inversedBy": "comments"
+    },
+    "parent": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article",
+      "mappedBy": "replies"
     }
   }
 }
