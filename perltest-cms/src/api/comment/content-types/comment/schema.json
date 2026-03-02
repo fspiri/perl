@@ -26,11 +26,17 @@
       "target": "api::thread.thread",
       "inversedBy": "comments"
     },
-    "parent": {
+    "comments": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::article.article",
-      "mappedBy": "replies"
+      "target": "api::comment.comment",
+      "mappedBy": "comment"
+    },
+    "comment": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::comment.comment",
+      "inversedBy": "comments"
     }
   }
 }
