@@ -612,7 +612,6 @@ export interface ApiCommentComment extends Struct.CollectionTypeSchema {
   };
   attributes: {
     comment: Schema.Attribute.Relation<'manyToOne', 'api::comment.comment'>;
-    comments: Schema.Attribute.Relation<'oneToMany', 'api::comment.comment'>;
     content: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -624,6 +623,7 @@ export interface ApiCommentComment extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    replies: Schema.Attribute.Relation<'oneToMany', 'api::comment.comment'>;
     thread: Schema.Attribute.Relation<'manyToOne', 'api::thread.thread'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
