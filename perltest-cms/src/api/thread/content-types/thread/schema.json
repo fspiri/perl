@@ -35,6 +35,16 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "threads"
+    },
+    "thread_votes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::thread-vote.thread-vote",
+      "mappedBy": "thread"
+    },
+    "vote_count": {
+      "type": "integer",
+      "default": 0
     }
   }
 }

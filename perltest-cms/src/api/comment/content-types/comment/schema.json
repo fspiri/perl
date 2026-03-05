@@ -41,6 +41,16 @@
       "relation": "manyToOne",
       "target": "api::comment.comment",
       "inversedBy": "replies"
+    },
+    "comment_votes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment-thread.comment-thread",
+      "mappedBy": "comment"
+    },
+    "vote_count": {
+      "type": "integer",
+      "default": 0
     }
   }
 }

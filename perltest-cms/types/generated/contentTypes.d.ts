@@ -600,6 +600,39 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCommentThreadCommentThread
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'comment_threads';
+  info: {
+    displayName: 'comment-thread';
+    pluralName: 'comment-threads';
+    singularName: 'comment-thread';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    comment: Schema.Attribute.Relation<'manyToOne', 'api::comment.comment'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::comment-thread.comment-thread'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiCommentComment extends Struct.CollectionTypeSchema {
   collectionName: 'comments';
   info: {
@@ -612,10 +645,15 @@ export interface ApiCommentComment extends Struct.CollectionTypeSchema {
   };
   attributes: {
     comment: Schema.Attribute.Relation<'manyToOne', 'api::comment.comment'>;
+    comment_votes: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::comment-thread.comment-thread'
+    >;
     content: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    deleted: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -632,6 +670,7 @@ export interface ApiCommentComment extends Struct.CollectionTypeSchema {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
+    vote_count: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
   };
 }
 
@@ -737,6 +776,38 @@ export interface ApiProfileSettingProfileSetting
   };
 }
 
+export interface ApiThreadVoteThreadVote extends Struct.CollectionTypeSchema {
+  collectionName: 'thread_votes';
+  info: {
+    displayName: 'thread-vote';
+    pluralName: 'thread-votes';
+    singularName: 'thread-vote';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::thread-vote.thread-vote'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    thread: Schema.Attribute.Relation<'manyToOne', 'api::thread.thread'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiThreadThread extends Struct.CollectionTypeSchema {
   collectionName: 'threads';
   info: {
@@ -766,10 +837,15 @@ export interface ApiThreadThread extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     Slug: Schema.Attribute.UID<'Title'>;
+    thread_votes: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::thread-vote.thread-vote'
+    >;
     Title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    vote_count: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
   };
 }
 
@@ -1238,6 +1314,10 @@ export interface PluginUsersPermissionsUser
     champ_1: Schema.Attribute.String;
     champ_2: Schema.Attribute.String;
     champ_3: Schema.Attribute.String;
+    comment_votes: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::comment-thread.comment-thread'
+    >;
     comments: Schema.Attribute.Relation<'oneToMany', 'api::comment.comment'>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -1292,6 +1372,10 @@ export interface PluginUsersPermissionsUser
       'plugin::users-permissions.role'
     >;
     subscription_tier: Schema.Attribute.Enumeration<['free', 'silver', 'gold']>;
+    thread_votes: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::thread-vote.thread-vote'
+    >;
     threads: Schema.Attribute.Relation<'oneToMany', 'api::thread.thread'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1321,10 +1405,12 @@ declare module '@strapi/strapi' {
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
+      'api::comment-thread.comment-thread': ApiCommentThreadCommentThread;
       'api::comment.comment': ApiCommentComment;
       'api::global.global': ApiGlobalGlobal;
       'api::product.product': ApiProductProduct;
       'api::profile-setting.profile-setting': ApiProfileSettingProfileSetting;
+      'api::thread-vote.thread-vote': ApiThreadVoteThreadVote;
       'api::thread.thread': ApiThreadThread;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
