@@ -609,7 +609,7 @@ export interface ApiCommentThreadCommentThread
     singularName: 'comment-thread';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     comment: Schema.Attribute.Relation<'manyToOne', 'api::comment.comment'>;
@@ -784,7 +784,7 @@ export interface ApiThreadVoteThreadVote extends Struct.CollectionTypeSchema {
     singularName: 'thread-vote';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
