@@ -168,6 +168,10 @@
       "relation": "oneToMany",
       "target": "api::comment-thread.comment-thread",
       "mappedBy": "user"
+    },
+    "reputation": {
+      "type": "integer",
+      "default": 0
     }
   }
 }

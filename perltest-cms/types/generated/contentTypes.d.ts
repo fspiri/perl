@@ -1362,6 +1362,7 @@ export interface PluginUsersPermissionsUser
     >;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    reputation: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
     riot_gameName: Schema.Attribute.String;
     riot_linked_at: Schema.Attribute.DateTime;
